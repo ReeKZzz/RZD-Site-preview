@@ -2,17 +2,21 @@
   "name": "roadmap-site",
   "version": "0.0.1",
   "private": true,
-  "scripts": {  
+  "homepage": "http://ReeKZzz.github.io/RZD-Site-preview",
+  "scripts": {
     "dev": "vite",
     "start": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "gh-pages": "^6.3.0",
     "vite": "^5.0.0"
   }
 }
