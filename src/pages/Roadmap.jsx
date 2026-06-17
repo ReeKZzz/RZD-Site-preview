@@ -1,8 +1,15 @@
 import React from 'react'
-import RailMap from '../components/RailMap'
+import RailMap from '../components/RailMapNew'
 
 export default function Roadmap({stages = [], onStationClick, blur = false}){
-  // Подбираемые значения: можно менять тут или в вызове App
+  if(!stages || stages.length === 0) {
+    return (
+      <section className="roadmap" style={{minHeight: '70vh', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+        <div style={{textAlign: 'center', color: '#64748b'}}>Загрузка маршрута...</div>
+      </section>
+    )
+  }
+  
   return (
     <section className="roadmap">
       <RailMap

@@ -11,9 +11,9 @@ npm run dev
 
 Файлы:
 - `src/data/roadmap.json` — пример этапов
-- `src/pages/Roadmap.jsx` — основная логика отображения и разблокировки этапов
-- `src/components/StageCard.jsx` — карточка этапа
-- `src/services/storage.js` — абстракция сохранения в `localStorage`
+- `src/pages/Roadmap.jsx` — основная логика отображения
+- `src/pages/StationDetail.jsx` — страница деталей станции
+- `src/services/storage.js` — работа с `localStorage`
 
 Дальше можно:
 - добавить более сложную валидацию заданий
