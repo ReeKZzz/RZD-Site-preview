@@ -581,31 +581,54 @@ export default function RailMap({ stages = [], onStationClick, stationBaseSize =
     let lastPt = getTrackPoint(currProg)
     
     for (let j = 0; j < carriageCount; j++) {
-      const targetDist = j === 0 ? 54 : 51
+      // Расстояние между вагонами: первый вагон ближе к локомотиву, остальные теснее друг к другу
+      // SVG вагона 58px шириной, добавляем небольшой промежуток для видимой сцепки
+      const targetDist = j === 0 ? 58 : 54
       
       let bestProg = currProg
       let bestDistDiff = Infinity
       
-      let scanProg = currProg
-      for (let s = 0; s < 300; s++) {
-        scanProg -= 0.005
-        if (scanProg < -0.5) {
-          scanProg = -0.5
-          break
+      let low = currProg - 15
+      let high = currProg
+      
+      for (let iteration = 0; iteration < 30; iteration++) {
+        const mid = (low + high) / 2
+        const pt = getTrackPoint(mid)
+        const d = Math.hypot(pt.x - lastPt.x, pt.y - lastPt.y)
+        
+        if (d < targetDist) {
+          high = mid
+        } else {
+          low = mid
         }
+      }
+      
+      let scanProg = low
+      let foundProg = low
+      
+      for (let s = 0; s < 300; s++) {
+        scanProg -= 0.003
+        if (scanProg < -20) break
+        
         const pt = getTrackPoint(scanProg)
         const d = Math.hypot(pt.x - lastPt.x, pt.y - lastPt.y)
         const diff = Math.abs(d - targetDist)
+        
         if (diff < bestDistDiff) {
           bestDistDiff = diff
-          bestProg = scanProg
+          foundProg = scanProg
+          
+          if (diff < 0.5) {
+            break
+          }
         }
-        if (d >= targetDist) {
+        
+        if (d >= targetDist && diff < 0.8) {
           break
         }
       }
       
-      currProg = bestProg
+      currProg = foundProg
       lastPt = getTrackPoint(currProg)
       carriages.push({
         x: lastPt.x,
@@ -719,8 +742,9 @@ export default function RailMap({ stages = [], onStationClick, stationBaseSize =
                 return (
                   <motion.div
                     className="train-locomotive-container"
-                    initial={{ scale: 0.8, opacity: 0 }}
+                    initial={{ x: locoPt.x, y: locoPt.y, rotate: locoPt.angle, scale: 1, opacity: 1 }}
                     animate={{ x: locoPt.x, y: locoPt.y, rotate: locoPt.angle, scale: 1, opacity: 1 }}
+                    transition={{ duration: 0, type: 'linear' }}
                     whileHover={{ scale: 1.15, zIndex: 50 }}
                     style={{
                       position: 'absolute',
@@ -753,8 +777,9 @@ export default function RailMap({ stages = [], onStationClick, stationBaseSize =
                     <motion.div
                       key={stage.id || j}
                       className="train-wagon-container"
-                      initial={{ scale: 0.2, opacity: 0 }}
+                      initial={{ x: wagonPt.x, y: wagonPt.y, rotate: wagonPt.angle, scale: isClamped ? 0 : 1, opacity: isClamped ? 0 : 1 }}
                       animate={{ x: wagonPt.x, y: wagonPt.y, rotate: wagonPt.angle, scale: isClamped ? 0 : 1, opacity: isClamped ? 0 : 1 }}
+                      transition={{ duration: 0, type: 'linear' }}
                       whileHover={{ scale: 1.15, zIndex: 50 }}
                       style={{
                         position: 'absolute',

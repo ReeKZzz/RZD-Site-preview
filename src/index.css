@@ -294,32 +294,13 @@ button[disabled]{ background:#9aa6bf; cursor:not-allowed }
   animation: none;
 }
 
-.locomotive.moving {
-  animation: locomotiveMotion 0.6s ease-in-out infinite;
-}
-
 .train-car {
   animation: none;
-}
-
-.train-car.moving {
-  animation: trainCarWobble 0.5s ease-in-out infinite;
 }
 
 .car-label {
   font-family: 'Inter', 'Roboto', sans-serif;
   line-height: 1;
-}
-
-@keyframes locomotiveMotion {
-  0%, 100% { transform: translateY(-2px); }
-  50% { transform: translateY(2px); }
-}
-
-@keyframes trainCarWobble {
-  0%, 100% { transform: translateY(0); }
-  25% { transform: translateY(-1px); }
-  75% { transform: translateY(1px); }
 }
 
 
