@@ -175,7 +175,18 @@ button[disabled]{ background:#9aa6bf; cursor:not-allowed }
 .station-detail .back{ align-self:flex-start; background:transparent; color:#334155; padding:6px 8px; margin-bottom:8px; border-radius:6px }
 .station-detail h2{ margin-top:0 }
 .station-detail .value, .station-detail .task p{ text-align:center; color:#334155 }
+.station-detail .task{ max-height:400px; overflow-y:auto; padding-right:8px; margin:16px 0; }
+.station-detail .task::-webkit-scrollbar{ width:6px }
+.station-detail .task::-webkit-scrollbar-track{ background:#f1f5f9; border-radius:3px }
+.station-detail .task::-webkit-scrollbar-thumb{ background:#cbd5e1; border-radius:3px }
+.station-detail .task::-webkit-scrollbar-thumb:hover{ background:#94a3b8 }
 .station-detail .controls{ margin-top:18px }
+
+/* Mobile responsive styles */
+@media(max-width:768px){
+  .station-detail{ margin:24px auto; padding:20px; }
+  .station-detail .task{ max-height:50vh; }
+}
 
 /* Intro modal overlay */
 .intro-modal-overlay{

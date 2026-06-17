@@ -13,7 +13,8 @@ export default function StationDetail({stage, onComplete, onBack}){
       <h2>Станция: «{title}»</h2>
       <p className="value"><strong>Задание:</strong> {value}</p>
       <div className="task">
-        <p><strong>Требования:</strong> {task}</p>
+        <p><strong>Требования:</strong></p>
+        <p>{task}</p>
       </div>
       <div className="controls">
         {isCompleted ? (
