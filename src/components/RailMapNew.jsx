@@ -852,9 +852,9 @@ export default function RailMap({ stages = [], onStationClick, stationBaseSize =
                     <path d="M 6 32 L 40 15 L 74 32 Z" fill="#E30613" />
                     <path d="M 12 32 L 40 19 L 68 32 Z" fill="#b91c1c" />
                     
-                    {/* Glowing Flag or sign saying ФИНИШ */}
+                    {/* Glowing Flag or sign saying ПОЛУФИНАЛ */}
                     <rect x="22" y="21" width="36" height="9" rx="1.5" fill={isCompleted ? "#E30613" : "#475569"} />
-                    <text x="40" y="27.5" fill="#ffffff" fontSize="5.5" fontWeight="900" textAnchor="middle" fontFamily="sans-serif" letterSpacing="0.5">ФИНИШ</text>
+                    <text x="40" y="27.5" fill="#ffffff" fontSize="5.5" fontWeight="900" textAnchor="middle" fontFamily="sans-serif" letterSpacing="0.5">ПОЛУФИНАЛ</text>
                     
                     {/* Shiny Windows */}
                     <rect x="16" y="44" width="6" height="8" rx="1" fill={isCompleted ? "#38bdf8" : "#94a3b8"} opacity={isCompleted ? "0.9" : "0.5"} />
@@ -865,7 +865,7 @@ export default function RailMap({ stages = [], onStationClick, stationBaseSize =
                     <line x1="46" y1="70" x2="46" y2="60" stroke="#94a3b8" strokeWidth="1" />
                   </svg>
                 </div>
-                <div className="label font-bold text-white bg-slate-900/80 px-2 py-0.5 rounded-full text-[11px] backdrop-blur-xs mt-1.5 border border-slate-700">Финиш</div>
+                <div className="label font-bold text-white bg-slate-900/80 px-2 py-0.5 rounded-full text-[11px] backdrop-blur-xs mt-1.5 border border-slate-700">Полуфинал</div>
               </div>
             )
           })()}
