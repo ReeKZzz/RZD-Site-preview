@@ -76,7 +76,7 @@ export default function App(){
       <header className="app-header">
         <div className="header-top">
           <div>
-            <h1>Железные узы семьи</h1>
+            <h1>Локомотив семейных ценностей</h1>
             <p>Пошаговый план с заданиями - пройдите этапы, чтобы двигаться дальше.</p>
           </div>
           <button className="reset-btn" onClick={handleResetProgress} title="Сбросить прогресс">↻</button>
